@@ -1,0 +1,62 @@
+cadastro = {}
+programa = []
+
+def menu():
+    try:
+        opc = int(input(''' 
+        ===Cadastramento 1.0===
+            1- Cadastrar 
+            2- Alterar Idade
+            3- Alterar Nome
+            4- Exibir Lista
+            0- Sair
+        Digite a opção desejada: ''') or 0)
+
+        if opc in range(0,5):
+            return opc
+        else:
+            print("Digite uma Opção Valida !")
+            menu()
+    except ValueError as erro:
+        print('          Digite Apenas Números')
+
+
+
+
+def cadastrar():
+    print()
+    cadastro['nome'] = input('Digite seu nome: '.title().strip())
+    cadastro['idade'] = int(input('Digite sua idade: '.title().strip()))
+    programa.append(cadastro.copy())
+    print(f'O Nome {cadastro["nome"]} e Idade {cadastro["idade"]} foram Cadastrados com Sucesso !')
+
+def alterar_idade():
+    for k, v in enumerate(programa):
+        print(v)
+    pergunta = input('Qual o nome da pessoa que você deseja alterar a idade: '.strip().title())
+    for v in programa:
+        if v['nome'] == pergunta:
+            print()
+            nova_idade = int(input('Qual a nova idade: '.strip()))
+            v['idade'] = nova_idade
+            print(f'A nova idade de {v["nome"]} é {v["idade"]} anos de idade !')
+
+def alterar_nome():
+    for k, v in enumerate(programa):
+        print(v)
+    pergunta = input('Qual o nome da pessoa que você deseja alterar: '.strip().title())
+    for v in programa:
+        if v['nome'] == pergunta:
+            print()
+            novo_nome = input('Qual o novo nome: '.strip())
+            v['nome'] = novo_nome
+            print(f'O novo nome é {v["nome"]} !')
+
+def exibir_lista():
+    print()
+    print('=' * 30)
+    print(f'{"Nome":>10} {"Idade":>10}')
+    for k, v in enumerate(programa):
+        print(f'{v["nome"]:>8} {v["idade"]:>8}')
+    print('=' * 30)
+
